@@ -7,14 +7,16 @@ This project simulates a secure environment for handling sensitive client data w
 
 # 📑 Table of Contents
 
-- [Security & Architecture](#-security--architecture)  
-  - [Multi-Tenancy (Tenant Isolation)](#-multi-tenancy-tenant-isolation)  
-  - [UUID-Based Primary Keys](#-uuid-based-primary-keys)  
-  - [PHI Data Encryption](#-phi-data-encryption)  
-  - [Audit Logging](#-audit-logging)  
-  - [File Handling](#-file-handling)  
-- [Installation](#-installation)  
-- [Screenshots](#-screenshots)  
+- [Security & Architecture](#security--architecture)  
+  - [Multi-Tenancy (Tenant Isolation)](#multi-tenancy-tenant-isolation)  
+  - [UUID-Based Primary Keys](#uuid-based-primary-keys)  
+  - [PHI Data Encryption](#phi-data-encryption)  
+  - [Audit Logging](#audit-logging)  
+  - [File Handling](#file-handling)  
+- [Installation](#installation)  
+  - [Running Tests](#running-tests)
+- [Screenshots](#screenshots)  
+- [Notes](#notes)  
 
 ---
 
@@ -63,7 +65,7 @@ Follow these steps to set up the project locally:
 git clone <your-repo-url>
 
 # 2. Navigate into the project
-cd mini-vault
+cd wall
 
 # 3. Copy environment file
 cp .env.example .env
@@ -82,6 +84,8 @@ npm install && npm run build
 
 # 8. Serve the application
 php artisan serve
+
+---
 
 # 🧪 Running Tests
 php artisan test
@@ -125,6 +129,8 @@ PASS  Tests\Feature\TenantTest
 Tests: 19 passed (45 assertions)
 Duration: 2.28s
 
+---
+
 # 📸 Screenshots
 
 Dashboard
@@ -140,7 +146,9 @@ Encrypted Data in DB
 Audit Logs
 <p align="center"> <img src="screenshots/audit-logs.png" alt="Audit Logs" width="600"> </p>
 
-#🚀 Notes
+---
+
+# 🚀 Notes
  - Designed as a technical assessment project.
  - Focuses on security, data isolation, and clean architecture.
  - Easily extendable to:
