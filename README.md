@@ -28,7 +28,7 @@ This project simulates a secure environment for handling sensitive client data w
 - Ensures users can only access their own tenant data.
 
 ### ✅ UUID-Based Primary Keys
-- All core entities (`users`, `clients`, `service_logs`) use **UUIDs instead of integers**.
+- All core entities (`users`, `clients`, `service_logs`, `audit_logs`) use **UUIDs instead of integers**.
 - Prevents ID enumeration attacks.
 - Improves security in distributed environments.
 
@@ -73,6 +73,14 @@ Audit Logs
 
 ---
 
+# 🚀 Notes
+    - Designed as a technical assessment project.
+    - Focuses on security, data isolation, and clean architecture.
+    - Easily extendable to:
+    - AWS S3
+    - Queue-based audit logging
+    - Full SaaS onboarding
+
 
 
 # ⚙️ Installation
@@ -81,7 +89,7 @@ Follow these steps to set up the project locally:
 
 ```bash
 # 1. Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/AsadZaman177/Wall-Valut-Min-Challenge.git
 
 # 2. Navigate into the project
 cd wall
@@ -149,10 +157,4 @@ Duration: 2.28s
 ---
 
 
-# 🚀 Notes
- - Designed as a technical assessment project.
- - Focuses on security, data isolation, and clean architecture.
- - Easily extendable to:
- - AWS S3
- - Queue-based audit logging
- - Full SaaS onboarding
+
