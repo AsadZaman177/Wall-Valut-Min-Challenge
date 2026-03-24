@@ -125,8 +125,8 @@ PASS  Tests\Feature\TenantTest
 Tests: 19 passed (45 assertions)
 Duration: 2.28s
 
+# 📸 Screenshots
 
-📸 Screenshots
 Dashboard
 <p align="center"> <img src="screenshots/dashboard.png" alt="Dashboard" width="600"> </p>
 Users
@@ -139,10 +139,11 @@ Encrypted Data in DB
 <p align="center"> <img src="screenshots/encrypted.png" alt="Encrypted Data" width="600"> </p>
 Audit Logs
 <p align="center"> <img src="screenshots/audit-logs.png" alt="Audit Logs" width="600"> </p>
-🚀 Notes
+
+#🚀 Notes
  - Designed as a technical assessment project.
-Focuses on security, data isolation, and clean architecture.
-Easily extendable to:
-AWS S3
-Queue-based audit logging
-Full SaaS onboarding
+ - Focuses on security, data isolation, and clean architecture.
+ - Easily extendable to:
+ - AWS S3
+ - Queue-based audit logging
+ - Full SaaS onboarding
