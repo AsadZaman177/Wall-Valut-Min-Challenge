@@ -85,9 +85,7 @@ npm install && npm run build
 # 8. Serve the application
 php artisan serve
 
----
-
-# 🧪 Running Tests
+## 🧪 Running Tests
 php artisan test
 
 ### ✅ Test Results
@@ -138,7 +136,7 @@ Dashboard
 Users
 <p align="center"> <img src="screenshots/users.png" alt="Users" width="600"> </p>
 Clients
-<p align="center"> <img src="screenshots/client.png" alt="Clients" width="600"> </p>
+<p align="center"> <img src="screenshots/clients.png" alt="Clients" width="600"> </p>
 Service Logs
 <p align="center"> <img src="screenshots/service-logs.png" alt="Service Logs" width="600"> </p>
 Encrypted Data in DB
