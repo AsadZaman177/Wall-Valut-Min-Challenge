@@ -17,7 +17,16 @@ class ServiceLogObserver
             'action' => 'created',
             'model_type' => 'ServiceLog',
             'model_id' => $serviceLog->id,
-            'new_values' => $serviceLog->toArray(),
+            'new_values' => [
+                'id' => $serviceLog->id,
+                'notes' => $serviceLog->notes,
+                'client' => trim(
+                    ($serviceLog->client->first_name ?? '') . ' ' . ($serviceLog->client->last_name ?? '')
+                ),
+                'file_path' => $serviceLog->file_path,
+                'created_at' => $serviceLog->created_at,
+                'updated_at' => $serviceLog->updated_at,
+            ],
         ]);
     }
 
@@ -26,13 +35,31 @@ class ServiceLogObserver
      */
     public function updated(ServiceLog $serviceLog): void
     {
+        $old = $serviceLog->getOriginal();
+        $new = $serviceLog->getChanges();
+
+        // Replace client_id with client name
+        if (isset($old['client_id'])) {
+            $old['client'] = trim(
+                ($serviceLog->client->first_name ?? '') . ' ' . ($serviceLog->client->last_name ?? '')
+            );
+            unset($old['client_id']);
+        }
+
+        if (isset($new['client_id'])) {
+            $new['client'] = trim(
+                ($serviceLog->client->first_name ?? '') . ' ' . ($serviceLog->client->last_name ?? '')
+            );
+            unset($new['client_id']);
+        }
+
         AuditLog::create([
             'crp_id' => $serviceLog->crp_id,
             'action' => 'updated',
             'model_type' => 'ServiceLog',
             'model_id' => $serviceLog->id,
-            'old_values' => json_encode($serviceLog->getOriginal()),
-            'new_values' => json_encode($serviceLog->getChanges()),
+            'old_values' => $old,
+            'new_values' => $new,
         ]);
     }
 
@@ -46,7 +73,16 @@ class ServiceLogObserver
             'action' => 'deleted',
             'model_type' => 'ServiceLog',
             'model_id' => $serviceLog->id,
-            'new_values' => $serviceLog->toArray(),
+            'new_values' => [
+                'id' => $serviceLog->id,
+                'notes' => $serviceLog->notes,
+                'client' => trim(
+                    ($serviceLog->client->first_name ?? '') . ' ' . ($serviceLog->client->last_name ?? '')
+                ),
+                'file_path' => $serviceLog->file_path,
+                'created_at' => $serviceLog->created_at,
+                'updated_at' => $serviceLog->updated_at,
+            ],
         ]);
     }
 

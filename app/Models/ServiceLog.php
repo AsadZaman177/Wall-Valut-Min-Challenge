@@ -12,7 +12,7 @@ class ServiceLog extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     protected $fillable = [
-        'crp_id','client_id','notes'
+        'crp_id','client_id','notes','file_path'
     ];
 
     protected static function booted()

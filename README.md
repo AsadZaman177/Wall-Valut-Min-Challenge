@@ -1,61 +1,152 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini Laravel Multi-Tenant App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A minimal Laravel application built to demonstrate **multi-tenancy, PHI protection, and audit logging**.  
+This project simulates a secure environment for handling sensitive client data with strict tenant isolation and compliance-focused design.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 🔐 Security & Architecture
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This application is designed with security and data isolation as core priorities:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### ✅ Multi-Tenancy (Tenant Isolation)
+- Each record is scoped using `crp_id`
+- Implemented using **Eloquent Global Scopes**
+- Ensures users can only access their own tenant data
 
-## Learning Laravel
+### ✅ UUID-Based Primary Keys
+- All core entities (`users`, `clients`, `service_logs`) use **UUIDs instead of integers**
+- Prevents ID enumeration attacks
+- Improves security in distributed environments
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ✅ PHI Data Encryption
+- Sensitive fields such as:
+  - `ssn`
+  - `dob`
+- Are encrypted using **Laravel Encrypted Casts (AES-256)**
+- Raw database queries cannot expose sensitive data
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ✅ Audit Logging
+- Implemented using **Eloquent Observers**
+- Tracks:
+  - Create actions
+  - Update actions
+- Stores:
+  - `old_values`
+  - `new_values`
+- Ensures traceability and accountability
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### ✅ File Handling
+- Secure file uploads using Laravel Storage
+- Files linked to service logs
+- Can be extended to AWS S3 in production
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# ⚙️ Installation
 
-### Premium Partners
+Follow these steps to set up the project locally:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+# 1. Clone the repository
+git clone <your-repo-url>
 
-## Contributing
+# 2. Navigate into the project
+cd mini-vault
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 3. Copy environment file
+cp .env.example .env
 
-## Code of Conduct
+# 4. Install dependencies
+composer install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 5. Generate application key
+php artisan key:generate
 
-## Security Vulnerabilities
+# 6. Run migrations with seeders
+php artisan migrate:fresh --seed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 7. Install frontend dependencies
+npm install && npm run build
 
-## License
+# 8. Serve the application
+php artisan serve
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 🧪 Running Tests
+php artisan test
+
+# 🧪 Test Results
+  PASS  Tests\Feature\Auth\AuthenticationTest
+  ✓ login screen can be rendered                                                                                 0.34s
+  ✓ users can authenticate using the login screen                                                                0.07s
+  ✓ users can not authenticate with invalid password                                                             0.23s
+  ✓ users can logout                                                                                             0.04s
+
+   PASS  Tests\Feature\Auth\EmailVerificationTest
+  ✓ email verification screen can be rendered                                                                    0.02s
+  ✓ email can be verified                                                                                        0.02s
+  ✓ email is not verified with invalid hash                                                                      0.10s
+
+   PASS  Tests\Feature\Auth\PasswordConfirmationTest
+  ✓ confirm password screen can be rendered                                                                      0.02s
+  ✓ password can be confirmed                                                                                    0.02s
+  ✓ password is not confirmed with invalid password                                                              0.23s
+
+   PASS  Tests\Feature\Auth\PasswordResetTest
+  ✓ reset password link screen can be rendered                                                                   0.04s
+  ✓ reset password link can be requested                                                                         0.22s
+  ✓ reset password screen can be rendered                                                                        0.24s
+  ✓ password can be reset with valid token                                                                       0.26s
+
+   PASS  Tests\Feature\Auth\PasswordUpdateTest
+  ✓ password can be updated                                                                                      0.03s
+  ✓ correct password must be provided to update password                                                         0.02s
+
+   PASS  Tests\Feature\EncryptionTest
+  ✓ ssn encrypted                                                                                                0.03s
+
+   PASS  Tests\Feature\ServiceLogTest
+  ✓ service log creation triggers audit log                                                                      0.05s
+
+   PASS  Tests\Feature\TenantTest
+  ✓ tenant isolation                                                                                             0.03s
+
+  Tests:    19 passed (45 assertions)
+  Duration: 2.28s
+
+  #📸 Screenshots
+
+  ## Dashboard
+    <p align="center">
+    <img src="screenshots/dashboard.png" width="auto">
+    </p>
+
+  ## Users
+    <p align="center">
+    <img src="screenshots/users.png" width="auto">
+    </p>
+
+  ## Clients
+    <p align="center">
+    <img src="screenshots/client.png" width="auto">
+    </p>
+
+  ## Service Logs
+    <p align="center">
+    <img src="screenshots/service-logs.png" width="auto">
+    </p>
+
+  ## Encrypted Data in DB
+    <p align="center">
+    <img src="screenshots/encrypted.png" width="auto">
+    </p>
+
+  ## Audit Logs
+    <p align="center">
+    <img src="screenshots/audit-logs.png" width="auto">
+    </p>
+
+
+
+
+

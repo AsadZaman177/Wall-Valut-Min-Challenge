@@ -54,6 +54,26 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('service-logs.index') }}"
+                        class="nav-link {{ request()->is('service-logs') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            Service Logs
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('audit-logs.index') }}"
+                        class="nav-link {{ request()->is('audit-logs') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            Audit Logs
+                        </p>
+                    </a>
+                </li>
+
 
             </ul>
         </nav>
