@@ -56,6 +56,25 @@ This project simulates a secure environment for handling sensitive client data w
 
 ---
 
+# 📸 Screenshots
+
+Dashboard
+<p align="center"> <img src="screenshots/dashboard.png" alt="Dashboard" width="600"> </p>
+Users
+<p align="center"> <img src="screenshots/users.png" alt="Users" width="600"> </p>
+Clients
+<p align="center"> <img src="screenshots/clients.png" alt="Clients" width="600"> </p>
+Service Logs
+<p align="center"> <img src="screenshots/service-logs.png" alt="Service Logs" width="600"> </p>
+Encrypted Data in DB
+<p align="center"> <img src="screenshots/encrypted.png" alt="Encrypted Data" width="600"> </p>
+Audit Logs
+<p align="center"> <img src="screenshots/audit-logs.png" alt="Audit Logs" width="600"> </p>
+
+---
+
+
+
 # ⚙️ Installation
 
 Follow these steps to set up the project locally:
@@ -129,22 +148,6 @@ Duration: 2.28s
 
 ---
 
-# 📸 Screenshots
-
-Dashboard
-<p align="center"> <img src="screenshots/dashboard.png" alt="Dashboard" width="600"> </p>
-Users
-<p align="center"> <img src="screenshots/users.png" alt="Users" width="600"> </p>
-Clients
-<p align="center"> <img src="screenshots/clients.png" alt="Clients" width="600"> </p>
-Service Logs
-<p align="center"> <img src="screenshots/service-logs.png" alt="Service Logs" width="600"> </p>
-Encrypted Data in DB
-<p align="center"> <img src="screenshots/encrypted.png" alt="Encrypted Data" width="600"> </p>
-Audit Logs
-<p align="center"> <img src="screenshots/audit-logs.png" alt="Audit Logs" width="600"> </p>
-
----
 
 # 🚀 Notes
  - Designed as a technical assessment project.
